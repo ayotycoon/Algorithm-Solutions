@@ -2,33 +2,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class NewYearChaosHackerRank {
-    static int maxBribes = 0;
-    static boolean isBribeable(int[] q, int[] original){
-        System.out.println(Arrays.toString(q));
-        System.out.println(Arrays.toString(original));
-        // transform the original into a map
-        Map<Integer,Integer> originalArrangementMap = new HashMap<Integer, Integer>();
 
-        for (int i = 0; i < original.length; i++) {
-            originalArrangementMap.put(original[i], i);
-
-        }
-
-        for (int i = 0; i < q.length; i++) {
-
-            int diff = originalArrangementMap.get(q[i]) - i;
-            System.out.println(diff);
-            maxBribes += diff > 0 ? diff : 0;
-           if(diff> 2){
-               return false;
-
-           }
-
-        }
-return true;
-    }
-    static int[] originalQueue(int[] q){
+static int[] originalQueue(int[] q){
         int max = -9999;
         int[] arr = new int[q.length];
         for (int i = 0; i < q.length; i++) {
@@ -47,17 +24,64 @@ return true;
     }
     static void minimumBribes(int[] q) {
         int[] original = originalQueue(q);
-        if(isBribeable(q,original)){
-            System.out.println(maxBribes);
-        }else {
-            System.out.println("Too chaotic");
+
+            int moves = 0;
+            int[] arranged = Arrays.copyOf(q, q.length);
+
+            Map<Integer,Integer> arrangedMap = new HashMap<Integer, Integer>() ;
+
+        for (int i = 0; i < arranged.length; i++) {
+            arrangedMap.put(arranged[i],i);
         }
+
+
+                for (int i = original.length - 1; i >= 0 ; i--) {
+                    // find the index of the largest unsorted ellement
+                    int largest = original[i];
+int indexInArranged = arrangedMap.get(largest);
+                    int diff = i - indexInArranged;
+                    if(diff > 2){
+                        System.out.println("Too chaotic");
+                    return;
+                    }
+                   if(diff != 0){
+
+
+moves += diff;
+                       for (int j = 1; j <= diff ; j++) {
+                           // shift the current item
+                           int toBeMovedIndex = indexInArranged + j;
+                           int itemAtToBeMovedIndex = arranged[toBeMovedIndex];
+                           int itemAtToPreviousIndex = arranged[toBeMovedIndex - 1];
+                           // switch
+                           arranged[toBeMovedIndex -1] = itemAtToBeMovedIndex;
+                           arranged[toBeMovedIndex] = itemAtToPreviousIndex;
+
+//                           System.out.println(Arrays.toString(arranged));
+
+// update the map
+                           arrangedMap.put(itemAtToBeMovedIndex,toBeMovedIndex -1);
+                           arrangedMap.put(itemAtToPreviousIndex,toBeMovedIndex);
+                       }
+
+
+
+
+
+
+
+                }
+
+
+            }
+
+System.out.println(moves);
 
 
     }
     public static void main (String[] args){
-int[]arr = {1 ,2, 5, 3, 7, 8, 6, 4};
-       // int[]arr = {2 ,1 ,5 ,3 ,4};
+int[]arr = {2 ,1 ,5 ,3, 4};
+
         minimumBribes(arr);
 
 
