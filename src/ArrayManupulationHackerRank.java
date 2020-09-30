@@ -37,7 +37,7 @@ public class ArrayManupulationHackerRank {
 
 
     static long arrayManipulation(int n, int[][] queries) {
-        long [] ans = new long[n];
+        long [] ans = new long[n*2];
         long max = -99999;
 
 
