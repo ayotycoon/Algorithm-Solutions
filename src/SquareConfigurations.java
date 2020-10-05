@@ -78,6 +78,7 @@ public class SquareConfigurations {
 
 
 
+
     public static void main(String[] args) {
 
         long x = 26;
@@ -92,4 +93,18 @@ public class SquareConfigurations {
 }
 
 
+
+/*
+QUESTION
+// https://www.hackerrank.com/contests/apt-coding-challenge/challenges/square-configurations/problem
+
+Lucy is a brilliant student. Her teacher asked her to determine the number of unique squares in a m x n board. In no time, Lucy produced the answer for any given m and n. For example, when m = 15 and n = 1, then the answer is 15. When m = 2 and n = 9, the answer 26.
+
+Lucy's teacher was so surprised Lucy could solve the question effortlessly, so she gave Lucy a variant of the problem which Lucy is now stuck on. Can you help Lucy?
+
+Given a number d, determine the number of boards with exactly d unique squares.
+
+Input Format
+
+*/
 
